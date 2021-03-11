@@ -18,7 +18,7 @@ pub type Request = tide::Request<State>;
 
 async fn db_connection() -> tide::Result<SqlitePool> {
     let database_url = env::var("DATABASE_URL")?;
-    Ok(SqlitePool::new(&database_url).await?)
+    Ok(SqlitePool::connect(&database_url).await?)
 }
 
 async fn build_session_middleware(
